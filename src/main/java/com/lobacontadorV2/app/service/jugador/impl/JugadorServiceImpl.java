@@ -1,19 +1,42 @@
 package com.lobacontadorV2.app.service.jugador.impl;
 
+import com.lobacontadorV2.app.domain.JugadorLoba;
+import com.lobacontadorV2.app.service.input.console.impl.EntradaPorScannerImpl;
 import com.lobacontadorV2.app.service.jugador.JugadorService;
+import com.lobacontadorV2.app.service.mapeo.impl.MapeoServiceImpl;
 
 public class JugadorServiceImpl implements JugadorService{
+	
+	public static JugadorService jugador = new JugadorServiceImpl();
+	
+	static JugadorLoba newJugador;
+	static int cantidad;
 
 	@Override
 	public void agregarJugador() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("¿Cuántos jugadores desea agregar?");
+		cantidad = EntradaPorScannerImpl.input.entero();
+		for(int i=0; i<cantidad; i++) {
+			crearJugador();
+		}
 	}
 
 	@Override
 	public void quitarJugador() {
-		// TODO Auto-generated method stub
-		
+		System.out.println("Ingrese el nombre del Jugador: ");
+		String nombre = EntradaPorScannerImpl.input.texto();
+		if(MapeoServiceImpl.jugadoresMap.containsKey(nombre)) {
+			MapeoServiceImpl.jugadoresMap.remove(nombre);
+		}else {
+			System.out.println("El jugador "+nombre+" no existe. Pruebe de nuevo.");
+		}
+	}
+	
+	private void crearJugador() {
+		newJugador = new JugadorLoba();
+		System.out.println("Ingrese el nombre del Jugador: ");
+		newJugador.setNombre(EntradaPorScannerImpl.input.texto());
+		MapeoServiceImpl.mapeo.mapearJugadores(newJugador);
 	}
 
 }

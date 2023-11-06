@@ -1,13 +1,11 @@
-package com.mariano-apps.app;
+package com.lobacontadorV2.app;
 
-/**
- * Hello world!
- *
- */
+import com.lobacontadorV2.app.service.execution.impl.EjecucionServiceImpl;
+
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        EjecucionServiceImpl.ejecucion.ejecutar();
     }
 }
