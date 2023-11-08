@@ -17,6 +17,8 @@ public class MenuDeOpcionesImpl implements MenuDeOpciones{
 	public void mostrarMenu() {
 		
 		TablaServiceImpl.tabla.encabezado();
+		TablaServiceImpl.tabla.generarLinea("linea");
+		TablaServiceImpl.tabla.generarLinea("totales");
 		
 		System.out.println("Ingrese una opción: ");
 		System.out.println("\t\n0- SALIR\t\n1- AGREGAR JUGADORES\t\n2- QUITAR JUGADOR");

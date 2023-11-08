@@ -15,11 +15,29 @@ public class TablaServiceImpl implements TablaService{
 	static String linea;
 	static int valor;
 	static List<String> nombres;
+	public static int valor2 = 1; //este valor tiene que aumentar cuando se vaya a agregar puntos, debe ser responsabilidad de otro método.
 
 	@Override
 	public void generarLinea(String texto) {
-		
-		
+		if(texto.equalsIgnoreCase("linea")) {
+			linea = "";
+			for(int i=0; i<valor2; i++) {
+				for(JugadorLoba jugador : MapeoServiceImpl.jugadoresMap.values()) {
+					linea = linea + String.valueOf(jugador.getPuntos().get(i))+ajusteDeEspaciado(String.valueOf(jugador.getPuntos().get(i)));
+				}
+				System.out.println(linea);
+			}
+		}else if(texto.equalsIgnoreCase("totales")) {
+			linea = "";
+			for(JugadorLoba jugador : MapeoServiceImpl.jugadoresMap.values()) {
+			int suma = 0;
+				for(int punto : jugador.getPuntos()) {
+					jugador.setTotal(suma=suma+punto);
+				}
+				linea = linea + "<" + String.valueOf(jugador.getTotal())+ ">" + ajusteDeEspaciado("<"+String.valueOf(jugador.getTotal())+">");
+			}
+			System.out.println(linea);
+		}
 	}
 
 	@Override
